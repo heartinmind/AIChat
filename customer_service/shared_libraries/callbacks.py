@@ -116,7 +116,7 @@ def validate_customer_id(customer_id: str, session_state: State) -> Tuple[bool, 
 def lowercase_value(value):
     """Make dictionary lowercase"""
     if isinstance(value, dict):
-        return (dict(k, lowercase_value(v)) for k, v in value.items())
+        return {k: lowercase_value(v) for k, v in value.items()}
     elif isinstance(value, str):
         return value.lower()
     elif isinstance(value, (list, set, tuple)):
