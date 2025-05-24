@@ -1,12 +1,14 @@
 # Elite Beauty Clinic AI Customer Service Agent
 
-> **⚠️ IMPORTANT: This is a PROTOTYPE/SAMPLE project for demonstration purposes only**
+> **🚫 CRITICAL WARNING: NOT FOR COMMERCIAL USE 🚫**
 > 
-> **현재 상태**: 학습용 프로토타입 및 샘플 코드  
-> **상용 가능성**: 추가 개발 필요 (4-6개월 예상)  
-> **주요 제한사항**: Mock 데이터, 보안 미구현, 성능 최적화 필요
+> **⚠️ PROTOTYPE ONLY** - 이 코드는 데모/학습 목적의 프로토타입입니다  
+> **❌ 상용 서비스 배포 금지** - 현재 상태로는 실제 서비스에 사용할 수 없습니다  
+> **🔒 보안 미구현** - 인증, 암호화, API 보안 등 상용 보안 기능 없음  
+> **⚡ 성능 미최적화** - 대용량 트래픽, 확장성, 모니터링 지원 없음  
+> **📊 로깅 기본 수준** - 상용 서비스 수준의 로깅, 추적, 에러 처리 없음
 > 
-> 📋 **상용화 로드맵**: [PRODUCTION_TODO.md](./PRODUCTION_TODO.md) 참고
+> 📋 **상용화 로드맵**: [PRODUCTION_TODO.md](./PRODUCTION_TODO.md) - 16-22주 개발 필요
 
 이 프로젝트는 뷰티 클리닉을 위한 AI 기반 고객 서비스 에이전트의 **프로토타입**입니다. 고객 상담, 시술 추천, 예약 관리, 개인화된 서비스 제공을 위해 설계되었습니다.
 
@@ -32,19 +34,34 @@ The key features of the Customer Service Agent include:
 
 The agent is built using a multi-modal architecture, combining text and video inputs to provide a rich and interactive experience. It mocks interactions with various tools and services, including a product catalog, inventory management, order processing, and appointment scheduling systems. The agent also utilizes a session management system to maintain context across interactions and personalize the customer experience.
 
-## 🚨 **중요 제한사항**
+## 🚨 **CRITICAL LIMITATIONS - 상용 서비스 불가 사유**
 
 ### ❌ **Mock 구현 - 실제 백엔드 연동 없음**
 - **모든 데이터가 하드코딩됨**: 고객 정보, 예약, 장바구니 등
 - **변경사항 지속되지 않음**: 장바구니 추가 후 다시 조회하면 원래 상태로 복원
 - **실제 서비스 불가**: SMS 발송, 결제 처리, 예약 확정 등 모두 Mock
+- **데이터베이스 없음**: PostgreSQL/MySQL 등 실제 DB 연동 필요
 
-### ❌ **보안 및 프로덕션 준비 미완성**
-- **인증/인가 시스템 없음**
-- **API 보안 미구현**
-- **데이터 암호화 없음**
-- **에러 처리 기본 수준**
-- **모니터링/로깅 기본 수준**
+### ❌ **보안 시스템 완전 미구현 - 해킹 위험 높음**
+- **인증/인가 시스템 없음**: 누구나 모든 기능 접근 가능
+- **API 보안 미구현**: API 키, JWT 토큰, OAuth 등 없음
+- **데이터 암호화 없음**: 개인정보, 결제 정보 암호화 안됨
+- **SQL 인젝션 취약**: 입력값 검증/필터링 없음
+- **HTTPS 미설정**: 데이터 전송 중 노출 위험
+
+### ❌ **성능 및 확장성 미최적화 - 서비스 장애 위험**
+- **동접자 제한**: 10명 이상 접속 시 서버 다운 위험
+- **메모리 누수**: 장시간 운영 시 메모리 부족
+- **캐싱 없음**: Redis 등 캐시 시스템 미구현
+- **로드 밸런싱 없음**: 트래픽 분산 불가
+- **CDN 없음**: 이미지/정적 파일 로딩 느림
+
+### ❌ **로깅 및 모니터링 기본 수준 - 장애 대응 불가**
+- **에러 추적 불가**: 실시간 에러 모니터링 없음
+- **성능 지표 없음**: 응답 시간, 처리량 측정 안됨
+- **사용자 행동 분석 없음**: 비즈니스 인사이트 수집 불가
+- **백업/복구 없음**: 데이터 손실 시 복구 불가
+- **로그 보관 정책 없음**: GDPR/개인정보보호법 미준수
 
 ### ✅ **실제 백엔드 연동을 위해서는**
 `customer_service/tools.py` 파일의 모든 함수를 실제 API 호출로 교체해야 합니다.
@@ -120,9 +137,34 @@ The agent has access to the following tools:
 ### Prerequisites
 
 - Python 3.11+
-- Poetry (for dependency management)
-- Google ADK SDK (installed via Poetry)
-- Google Cloud Project (for Vertex AI Gemini integration)
+- Node.js 16+ (for TypeScript/Jest tests)  
+- Poetry (for dependency management) - 선택사항
+- Google ADK SDK (installed via Poetry) - 선택사항 (Mock 시스템 지원)
+- Google Cloud Project (for Vertex AI Gemini integration) - 선택사항
+
+### Quick Setup (개발자 없이도 가능)
+
+**자동 설치 스크립트 사용:**
+```bash
+# macOS/Linux
+./setup_development.sh
+
+# Windows
+setup_development.bat
+```
+
+**수동 설치:**
+```bash
+# Python 의존성 설치
+pip3 install -r requirements.txt
+
+# Node.js 의존성 설치  
+npm install
+
+# 테스트 실행
+python3 -m pytest tests/unit/ -v  # Python 테스트
+npm test                           # TypeScript 테스트
+```
 
 ### Installation
 1.  **Prerequisites:**
@@ -311,10 +353,28 @@ for event in remote_agent.stream_query(
 
 ```
 
-## Disclaimer
+## ⚠️ DISCLAIMER - 면책 조항
 
-This agent sample is provided for illustrative purposes only and is not intended for production use. It serves as a basic example of an agent and a foundational starting point for individuals or teams to develop their own agents.
+**🚫 상용 서비스 배포 절대 금지**
 
-This sample has not been rigorously tested, may contain bugs or limitations, and does not include features or optimizations typically required for a production environment (e.g., robust error handling, security measures, scalability, performance considerations, comprehensive logging, or advanced configuration options).
+이 에이전트 샘플은 **학습 및 데모 목적으로만** 제공되며, **상용 서비스에서의 사용은 절대 금지**됩니다. 이 코드는 에이전트 개발의 기초적인 예시이며, 개발자나 팀이 자체 에이전트를 개발하기 위한 출발점으로만 사용되어야 합니다.
 
-Users are solely responsible for any further development, testing, security hardening, and deployment of agents based on this sample. We recommend thorough review, testing, and the implementation of appropriate safeguards before using any derived agent in a live or critical system.
+**⚠️ 상용 서비스 위험 경고:**
+- **보안 취약점**: 해킹, 데이터 유출, 개인정보 노출 위험 매우 높음
+- **서비스 장애**: 트래픽 증가 시 서버 다운, 데이터 손실 위험
+- **법적 책임**: 개인정보보호법, 전자상거래법 등 법규 위반 위험
+- **금전적 손실**: 고객 불만, 배상책임, 비즈니스 신뢰도 손상
+
+**개발 요구사항:**
+이 샘플은 엄격한 테스트를 거치지 않았으며, 버그나 제한사항을 포함할 수 있습니다. 상용 환경에 필요한 다음 기능들이 누락되어 있습니다:
+- 강력한 에러 처리 및 복구 시스템
+- 엔터프라이즈급 보안 조치 (인증, 암호화, 접근 제어)
+- 확장성 및 고가용성 아키텍처
+- 성능 최적화 및 모니터링
+- 포괄적인 로깅 및 감사 추적
+- 고급 설정 옵션 및 관리 도구
+
+**법적 면책:**
+사용자는 이 샘플을 기반으로 한 모든 추가 개발, 테스트, 보안 강화 및 배포에 대한 전적인 책임을 집니다. 라이브 또는 중요한 시스템에서 파생된 에이전트를 사용하기 전에 철저한 검토, 테스트 및 적절한 보안 조치 구현을 강력히 권장합니다.
+
+**💡 권장사항**: 상용 서비스 개발을 원한다면 [PRODUCTION_TODO.md](./PRODUCTION_TODO.md)의 16-22주 개발 로드맵을 따라 전문 개발팀과 함께 진행하시기 바랍니다.
