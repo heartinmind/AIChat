@@ -71,17 +71,19 @@ def test_access_cart_information():
     assert result == {
         "items": [
             {
-                "product_id": "beauty-001",
-                "name": "Premium Facial Cleanser",
+                "product_id": "botox-123",
+                "name": "보톡스 (눈가)",
                 "quantity": 1,
+                "price": 250000,
             },
             {
-                "product_id": "beauty-002",
-                "name": "Anti-Aging Serum",
+                "product_id": "facial-456",
+                "name": "딥클렌징 페이셜",
                 "quantity": 1,
+                "price": 180000,
             },
         ],
-        "subtotal": 125.98,
+        "subtotal": 430000,
     }
 
 
@@ -105,14 +107,16 @@ def test_get_product_recommendations_skincare():
     assert result == {
         "recommendations": [
             {
-                "product_id": "beauty-004",
-                "name": "Hydrating Face Mask",
-                "description": "Perfect for maintaining healthy, glowing skin.",
+                "product_id": "facial-123",
+                "name": "하이드라페이셜",
+                "description": "모든 피부 타입에 적합한 기본 관리 시술입니다.",
+                "price": 150000,
             },
             {
-                "product_id": "beauty-005",
-                "name": "Vitamin C Brightening Serum",
-                "description": "Specifically formulated for radiant complexion.",
+                "product_id": "peel-456",
+                "name": "화학적 필링",
+                "description": "각질 제거 및 피부 톤 개선에 효과적입니다.",
+                "price": 100000,
             },
         ]
     }
@@ -125,14 +129,16 @@ def test_get_product_recommendations_other():
     assert result == {
         "recommendations": [
             {
-                "product_id": "beauty-001",
-                "name": "Premium Facial Cleanser",
-                "description": "A good all-purpose facial cleanser.",
+                "product_id": "facial-123",
+                "name": "하이드라페이셜",
+                "description": "모든 피부 타입에 적합한 기본 관리 시술입니다.",
+                "price": 150000,
             },
             {
-                "product_id": "beauty-002",
-                "name": "Anti-Aging Serum",
-                "description": "Suitable for a wide variety of skin types.",
+                "product_id": "peel-456",
+                "name": "화학적 필링",
+                "description": "각질 제거 및 피부 톤 개선에 효과적입니다.",
+                "price": 100000,
             },
         ]
     }
@@ -161,7 +167,7 @@ def test_schedule_planting_service():
 def test_get_available_planting_times():
     date = "2024-07-29"
     result = get_available_planting_times(date)
-    assert result == ["9-12", "13-16"]
+    assert result == ["9-11", "11-13", "14-16", "16-18", "18-20"]
 
 
 def test_send_care_instructions():
@@ -171,7 +177,7 @@ def test_send_care_instructions():
     result = send_care_instructions(customer_id, treatment_type, delivery_method)
     assert result == {
         "status": "success",
-        "message": f"Care instructions for {treatment_type} sent via {delivery_method}.",
+        "message": "Facial Treatment 시술 후 관리 안내를 이메일로 발송했습니다.",
     }
 
 
