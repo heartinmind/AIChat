@@ -1,6 +1,14 @@
-# Cymbal Home & Garden Customer Service Agent
+# Elite Beauty Clinic AI Customer Service Agent
 
-This project implements an AI-powered customer service agent for Cymbal Home & Garden, a big-box retailer specializing in home improvement, gardening, and related supplies. The agent is designed to provide excellent customer service, assist customers with product selection, manage orders, schedule services, and offer personalized recommendations.
+> **⚠️ IMPORTANT: This is a PROTOTYPE/SAMPLE project for demonstration purposes only**
+> 
+> **현재 상태**: 학습용 프로토타입 및 샘플 코드  
+> **상용 가능성**: 추가 개발 필요 (4-6개월 예상)  
+> **주요 제한사항**: Mock 데이터, 보안 미구현, 성능 최적화 필요
+> 
+> 📋 **상용화 로드맵**: [PRODUCTION_TODO.md](./PRODUCTION_TODO.md) 참고
+
+이 프로젝트는 뷰티 클리닉을 위한 AI 기반 고객 서비스 에이전트의 **프로토타입**입니다. 고객 상담, 시술 추천, 예약 관리, 개인화된 서비스 제공을 위해 설계되었습니다.
 
 ## Overview
 
@@ -24,9 +32,34 @@ The key features of the Customer Service Agent include:
 
 The agent is built using a multi-modal architecture, combining text and video inputs to provide a rich and interactive experience. It mocks interactions with various tools and services, including a product catalog, inventory management, order processing, and appointment scheduling systems. The agent also utilizes a session management system to maintain context across interactions and personalize the customer experience.
 
-It is important to notice that this agent is not integrated to an actual backend and the behaviour is based on mocked tools. If you would like to implement this agent with actual backend integration you will need to edit [customer_service/tools.py](./customer_service/tools/tools.py)
+## 🚨 **중요 제한사항**
 
-Because the tools are mocked you might notice that some requested changes will not be applied. For instance newly added item to cart will not show if later a user asks the agent to list all items.
+### ❌ **Mock 구현 - 실제 백엔드 연동 없음**
+- **모든 데이터가 하드코딩됨**: 고객 정보, 예약, 장바구니 등
+- **변경사항 지속되지 않음**: 장바구니 추가 후 다시 조회하면 원래 상태로 복원
+- **실제 서비스 불가**: SMS 발송, 결제 처리, 예약 확정 등 모두 Mock
+
+### ❌ **보안 및 프로덕션 준비 미완성**
+- **인증/인가 시스템 없음**
+- **API 보안 미구현**
+- **데이터 암호화 없음**
+- **에러 처리 기본 수준**
+- **모니터링/로깅 기본 수준**
+
+### ✅ **실제 백엔드 연동을 위해서는**
+`customer_service/tools.py` 파일의 모든 함수를 실제 API 호출로 교체해야 합니다.
+
+**예시:**
+```python
+# 현재 (Mock)
+def access_cart_information(customer_id: str) -> dict:
+    return {"items": [...], "subtotal": 430000}  # 하드코딩
+
+# 필요 (실제 구현)
+def access_cart_information(customer_id: str) -> dict:
+    response = requests.get(f"{API_BASE_URL}/customers/{customer_id}/cart")
+    return response.json()
+```
 
 ### Key Features
 
