@@ -17,8 +17,16 @@
 import logging
 import uuid
 from datetime import datetime, timedelta
-from google.adk.tools import ToolContext
 from typing import List, Dict, Optional
+
+# Conditional import for google.adk with fallback
+try:
+    from google.adk.tools import ToolContext
+except ImportError:
+    # Mock ToolContext for testing environments
+    class ToolContext:
+        """Mock ToolContext for environments where google.adk is not available."""
+        pass
 
 logger = logging.getLogger(__name__)
 
@@ -43,7 +51,7 @@ def send_call_companion_link(phone_number: str) -> str:
     return {"status": "success", "message": f"Link sent to {phone_number}"}
 
 
-def approve_discount(discount_type: str, value: float, reason: str) -> str:
+def approve_discount(discount_type: str, value: float, reason: str) -> dict:
     """
     Approve the flat rate or percentage discount requested by the user.
 
@@ -53,11 +61,11 @@ def approve_discount(discount_type: str, value: float, reason: str) -> str:
         reason (str): The reason for the discount.
 
     Returns:
-        str: A JSON string indicating the status of the approval.
+        dict: A dictionary indicating the status of the approval.
 
     Example:
         >>> approve_discount(type='percentage', value=10.0, reason='Customer loyalty')
-        '{"status": "ok"}'
+        {"status": "ok"}
     """
     if value > 10:
         logger.info("Denying %s discount of %s", discount_type, value)
@@ -69,7 +77,7 @@ def approve_discount(discount_type: str, value: float, reason: str) -> str:
     )
     return {"status": "ok"}
 
-def sync_ask_for_approval(discount_type: str, value: float, reason: str) -> str:
+def sync_ask_for_approval(discount_type: str, value: float, reason: str) -> dict:
     """
     Asks the manager for approval for a discount.
 
@@ -79,11 +87,11 @@ def sync_ask_for_approval(discount_type: str, value: float, reason: str) -> str:
         reason (str): The reason for the discount.
 
     Returns:
-        str: A JSON string indicating the status of the approval.
+        dict: A dictionary indicating the status of the approval.
 
     Example:
         >>> sync_ask_for_approval(type='percentage', value=15, reason='Customer loyalty')
-        '{"status": "approved"}'
+        {"status": "approved"}
     """
     logger.info(
         "Asking for approval for a %s discount of %s because %s",

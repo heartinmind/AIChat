@@ -16,14 +16,57 @@
 
 import logging
 import time
-
-from google.adk.agents.callback_context import CallbackContext
-from google.adk.models import LlmRequest
 from typing import Any, Dict, Optional, Tuple
-from google.adk.tools import BaseTool
-from google.adk.agents.invocation_context import InvocationContext
-from google.adk.sessions.state import State
-from google.adk.tools.tool_context import ToolContext
+
+# Conditional imports for google.adk with fallbacks
+try:
+    from google.adk.agents.callback_context import CallbackContext
+    from google.adk.models import LlmRequest
+    from google.adk.tools import BaseTool
+    from google.adk.agents.invocation_context import InvocationContext
+    from google.adk.sessions.state import State
+    from google.adk.tools.tool_context import ToolContext
+except ImportError:
+    # Mock classes for testing environments where google.adk is not available
+    class CallbackContext:
+        """Mock CallbackContext for environments where google.adk is not available."""
+        def __init__(self):
+            self.state = {}
+    
+    class LlmRequest:
+        """Mock LlmRequest for environments where google.adk is not available."""
+        def __init__(self, *args, **kwargs):
+            self.contents = []
+            self.text = kwargs.get('text', '')
+    
+    class BaseTool:
+        """Mock BaseTool for environments where google.adk is not available."""
+        def __init__(self):
+            self.name = 'mock_tool'
+    
+    class InvocationContext:
+        """Mock InvocationContext for environments where google.adk is not available."""
+        def __init__(self):
+            self.state = {}
+    
+    class State:
+        """Mock State for environments where google.adk is not available."""
+        def __init__(self):
+            self._data = {}
+        
+        def __contains__(self, key):
+            return key in self._data
+        
+        def __getitem__(self, key):
+            return self._data[key]
+        
+        def __setitem__(self, key, value):
+            self._data[key] = value
+    
+    class ToolContext:
+        """Mock ToolContext for environments where google.adk is not available."""
+        def __init__(self):
+            self.state = State()
 from jsonschema import ValidationError
 from customer_service.entities.customer import Customer
 
