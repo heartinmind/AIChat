@@ -47,3 +47,11 @@ class Config(BaseSettings):
     GENAI_USE_VERTEXAI: str = Field(default="1")
     API_KEY: str | None = Field(default="")
     agent_language: str = "ko-KR"
+    
+    def __post_init__(self):
+        """환경변수 검증 로직"""
+        if not self.CLOUD_PROJECT or self.CLOUD_PROJECT == "my_project":
+            raise ValueError("❌ GOOGLE_CLOUD_PROJECT 환경변수를 실제 프로젝트 ID로 설정해주세요!")
+        if not self.CLOUD_LOCATION:
+            raise ValueError("❌ GOOGLE_CLOUD_LOCATION 환경변수를 설정해주세요!")
+        logger.info(f"✅ 설정 검증 완료: Project={self.CLOUD_PROJECT}, Location={self.CLOUD_LOCATION}")

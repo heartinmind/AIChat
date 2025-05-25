@@ -74,7 +74,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 RATE_LIMIT_SECS = 60
-RPM_QUOTA = 10
+RPM_QUOTA = 100  # 서버 안정성을 위해 10에서 100으로 증가
 
 
 def rate_limit_callback(
