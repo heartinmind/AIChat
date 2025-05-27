@@ -1,0 +1,145 @@
+# Cursor IDE Rules for AIChat Project
+
+## 🚨 중요 원칙
+
+1. **대화는 Claude와만**: Cursor AI는 코드 자동완성만 사용, 대화형 작업은 Claude와 진행
+2. **파일 보호**: 절대 덮어쓰면 안 되는 파일들을 명확히 정의
+3. **Git 워크플로우**: 모든 변경사항은 commit 후 GitHub에 push
+
+## ❌ 절대 수정/삭제 금지 파일
+
+```
+# MCP 설정 - 절대 건드리지 마세요!
+~/Library/Application Support/Claude/claude_desktop_config.json
+
+# 환경 설정 파일
+.env
+service-account-key.json
+*.pem
+*.key
+
+# 데이터베이스 파일
+database/*.db
+database/migrations/*
+
+# 백업 파일
+*.bak
+*.backup
+```
+
+## ✅ Cursor 사용 규칙
+
+### 1. 코드 작성 시
+- 자동완성 기능만 사용
+- 대화형 프롬프트는 사용하지 않음
+- 파일 생성/수정 전 Claude와 확인
+
+### 2. 파일 작업 시
+- 새 파일 생성 전 경로 확인
+- 기존 파일 수정 시 백업 먼저 생성
+- 삭제는 Claude 확인 후에만 진행
+
+### 3. Git 작업
+- 작업 단위별로 commit
+- commit 메시지는 한국어로 명확하게
+- push 전 변경사항 검토
+
+## 📝 Commit 메시지 규칙
+
+```
+[타입] 제목
+
+본문 (선택사항)
+
+예시:
+[기능] 채팅 위젯 UI 구현
+[수정] 데이터베이스 연결 오류 해결
+[문서] README 업데이트
+[리팩토링] customer_service 모듈 정리
+```
+
+## 🔄 작업 워크플로우
+
+1. **Claude와 작업 계획 수립**
+   - 무엇을 만들지 논의
+   - 파일 구조 결정
+   - 주의사항 확인
+
+2. **Cursor에서 코드 작성**
+   - .cursorrules 규칙 준수
+   - 자동완성만 활용
+   - 의심스러우면 Claude에게 확인
+
+3. **테스트 및 검증**
+   ```bash
+   # 로컬 테스트
+   python test_*.py
+   
+   # 린트 체크
+   pylint src/
+   ```
+
+4. **Git 작업**
+   ```bash
+   # 상태 확인
+   git status
+   
+   # 스테이징
+   git add .
+   
+   # 커밋
+   git commit -m "[타입] 메시지"
+   
+   # 푸시
+   git push origin main
+   ```
+
+## 🛡️ 보호 규칙
+
+### MCP 서버 관련
+- `cursor-mcp/` 디렉토리는 신중히 다룰 것
+- package.json 수정 시 백업 필수
+- node_modules는 절대 커밋하지 않음
+
+### 환경 변수
+- .env 파일은 .env.example을 참고
+- 실제 키/토큰은 절대 커밋하지 않음
+- 새 환경변수 추가 시 .env.example 업데이트
+
+### 데이터베이스
+- 마이그레이션 파일은 순서 유지
+- 스키마 변경은 Claude와 상의
+- 프로덕션 DB는 절대 직접 수정 금지
+
+## 💡 유용한 단축키
+
+- `Cmd+K`: Cursor AI 열기 (사용 자제)
+- `Cmd+Shift+P`: 명령 팔레트
+- `Cmd+P`: 파일 빠른 열기
+- `Cmd+Shift+F`: 전체 검색
+
+## 🚫 하지 말아야 할 것들
+
+1. **Cursor AI와 대화하지 않기**
+   - "이 코드 설명해줘"
+   - "이 파일 수정해줘"
+   - "버그 찾아줘"
+   → 이런 것들은 모두 Claude에게!
+
+2. **무작정 파일 생성/삭제**
+   - 항상 Claude와 확인 후 작업
+   - 특히 설정 파일은 매우 신중히
+
+3. **대량 변경**
+   - 한 번에 여러 파일 수정 자제
+   - 단계별로 작은 변경 후 테스트
+
+## 📌 기억해야 할 것
+
+> "Cursor는 타이핑을 도와주는 도구일 뿐,
+> 모든 결정과 계획은 Claude와 함께!"
+
+---
+
+이 규칙을 항상 염두에 두고 작업하세요.
+불확실한 것이 있다면 항상 Claude에게 물어보세요.

@@ -1,0 +1,36 @@
+# 🚫 최소 배포용 - 꼭 필요한 것만 포함
+
+# Python 관련
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+venv/
+env/
+
+# 개발 관련
+.git/
+.vscode/
+.idea/
+*.log
+
+# 문서
+*.md
+docs/
+
+# 기타 배포 관련
+customer_service/
+src/
+tests/
+eval/
+database/
+deployment/
+*.sql
+*.json
+!templates/
+
+# 원본 파일들 (새 버전 사용)
+web_server.py
+Dockerfile
+deploy.sh
+requirements.txt

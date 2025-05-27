@@ -1,0 +1,13 @@
+# 🚀 최소 의존성 - 안정적 배포용
+
+# 웹 프레임워크
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+jinja2>=3.1.0
+
+# Python 기본 도구
+pydantic>=2.7.0
+python-multipart>=0.0.6
+
+# 추가 안정성
+python-dotenv>=0.21.0

@@ -1,78 +1,26 @@
-# 🚀 뷰티 클리닉 AI 챗봇 - 상용화 의존성 목록
+# 🚀 뷰티 클리닉 AI 챗봇 - 핵심 의존성 목록 (Cloud Run 최적화)
 
 # 기본 설정 관리
 pydantic-settings>=2.9.1
 pydantic>=2.7.0
 python-dotenv>=0.21.0
 
-# 데이터 검증
-jsonschema>=4.23.0
-
-# 테스트 프레임워크
-pytest>=8.3.5
-pytest-asyncio>=0.23.0
-
-# 🔥 웹 프레임워크 (상용 서비스용)
+# 웹 프레임워크
 fastapi>=0.104.0
 uvicorn[standard]>=0.24.0
-gunicorn>=21.2.0
+jinja2>=3.1.0
 
-# 🗄️ 데이터베이스 (실제 DB 연동용)
-sqlalchemy>=2.0.0
-psycopg2-binary>=2.9.0
-alembic>=1.12.0
+# Google Cloud 핵심 서비스
+google-cloud-firestore>=2.13.0
+google-cloud-aiplatform>=1.36.0
+firebase-admin>=6.2.0
 
-# 🌐 외부 API 연동 (실제 서비스 연동용)
+# HTTP 클라이언트
 requests>=2.31.0
 httpx>=0.25.0
-aiohttp>=3.9.0
 
-# 📊 로깅 및 모니터링
-structlog>=23.2.0
-sentry-sdk[fastapi]>=1.40.0
-
-# ☁️ Google Cloud SDK (실제 배포용)
-google-cloud-aiplatform>=1.36.0
-google-cloud-storage>=2.10.0
-google-cloud-sql-connector>=1.0.0
-google-cloud-secret-manager>=2.16.0
-google-cloud-firestore>=2.13.0
-google-cloud-logging>=3.8.0
-
-# 🔐 보안 및 인증
-python-jose[cryptography]>=3.3.0
-passlib[bcrypt]>=1.7.4
-python-multipart>=0.0.6
-
-# 📧 알림 및 통신
-celery[redis]>=5.3.0
-redis>=5.0.0
-sendgrid>=6.10.0
-twilio>=8.10.0
-
-# 🎨 이미지 처리 (QR 코드 등)
-pillow>=10.0.0
-qrcode[pil]>=7.4.0
-
-# 📅 날짜/시간 처리
+# 날짜/시간 처리
 python-dateutil>=2.8.2
-pytz>=2023.3
 
-# 🔄 비동기 작업
-asyncpg>=0.29.0
-asyncio-mqtt>=0.13.0
-
-# 📈 성능 모니터링
-prometheus-client>=0.19.0
-psutil>=5.9.0
-
-# 🧪 개발용 도구
-black>=23.9.0
-isort>=5.12.0
-flake8>=6.1.0
-mypy>=1.6.0
-
-# 📦 추가 유틸리티
+# 기본 유틸리티
 rich>=13.6.0
-click>=8.1.0
-jinja2>=3.1.0

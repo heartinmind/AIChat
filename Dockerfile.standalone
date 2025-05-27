@@ -1,0 +1,25 @@
+# 🐳 독립형 뷰티 클리닉 AI 챗봇 - Cloud Run 배포용
+
+FROM python:3.11-slim
+
+# 작업 디렉토리 설정
+WORKDIR /app
+
+# Python 의존성 복사 및 설치
+COPY requirements_standalone.txt requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# 필요한 파일들만 복사
+COPY web_server_standalone.py .
+COPY templates/ ./templates/
+
+# 환경변수 설정
+ENV PYTHONPATH=/app
+ENV PORT=8080
+
+# 포트 노출
+EXPOSE 8080
+
+# 웹 서버 실행
+CMD exec python web_server_standalone.py 

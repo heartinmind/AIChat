@@ -1,0 +1,152 @@
+/* 기본 앱 스타일 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.App {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* 헤더 스타일 */
+.App-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.App-header h1 {
+  font-size: 3rem;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+.App-header p {
+  font-size: 1.25rem;
+  opacity: 0.9;
+}
+
+/* 메인 콘텐츠 */
+main {
+  padding: 40px 20px 100px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 히어로 섹션 */
+.hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+  color: #1d1d1f;
+}
+
+.hero p {
+  font-size: 1.125rem;
+  color: #6e6e73;
+}
+
+/* 서비스 섹션 */
+.services {
+  margin-bottom: 60px;
+}
+
+.services h3 {
+  font-size: 2rem;
+  margin-bottom: 32px;
+  text-align: center;
+  color: #1d1d1f;
+}
+
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.service-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.service-card h4 {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+  color: #1d1d1f;
+}
+
+.service-card p {
+  font-size: 1rem;
+  color: #6e6e73;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 2rem;
+  }
+  
+  .App-header p {
+    font-size: 1rem;
+  }
+  
+  .hero h2 {
+    font-size: 1.75rem;
+  }
+  
+  .service-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000000;
+    color: #f5f5f7;
+  }
+  
+  .hero h2,
+  .services h3,
+  .service-card h4 {
+    color: #f5f5f7;
+  }
+  
+  .hero p,
+  .service-card p {
+    color: #a1a1a6;
+  }
+  
+  .service-card {
+    background: #1c1c1e;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+  
+  .service-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}

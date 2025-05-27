@@ -378,3 +378,13 @@ for event in remote_agent.stream_query(
 사용자는 이 샘플을 기반으로 한 모든 추가 개발, 테스트, 보안 강화 및 배포에 대한 전적인 책임을 집니다. 라이브 또는 중요한 시스템에서 파생된 에이전트를 사용하기 전에 철저한 검토, 테스트 및 적절한 보안 조치 구현을 강력히 권장합니다.
 
 **💡 권장사항**: 상용 서비스 개발을 원한다면 [PRODUCTION_TODO.md](./PRODUCTION_TODO.md)의 16-22주 개발 로드맵을 따라 전문 개발팀과 함께 진행하시기 바랍니다.
+
+## 환경 설정 (Customer Service)
+
+`customer_service` 모듈을 사용하기 전에 프로젝트 루트 디렉토리의 `.env` 파일에 다음 환경변수를 설정해주세요:
+
+- `USE_MOCK_DATA`: `true`로 설정하면 Mock 데이터를 사용하고, `false`로 설정하면 실제 데이터베이스에 연결합니다. (기본값: `false` 권장)
+  ```env
+  # .env 파일 예시
+  USE_MOCK_DATA=false
+  ```
