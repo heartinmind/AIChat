@@ -1,27 +1,42 @@
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-package-lock.json
-
-# TypeScript
-*.tsbuildinfo
-dist/
-build/
-
 # Environment variables
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.production
+.env.*.local
 
-# Google Cloud Service Account Keys
-service-account-key.json
-*.json
-!package.json
-!tsconfig.json
+# API Keys
+**/config/secrets.js
+**/*_key.json
+*.pem
+
+# Dependencies
+node_modules/
+venv/
+__pycache__/
+*.pyc
+.Python
+
+# Build outputs
+build/
+dist/
+*.egg-info/
+.next/
+out/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
 
 # IDE
 .vscode/
@@ -29,82 +44,18 @@ service-account-key.json
 *.swp
 *.swo
 
-# OS
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# Database
+*.db
+*.sqlite
+*.sqlite3
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-.coverage
-.pytest_cache/
-.tox/
-.coverage
-.nyc_output
-
-# Poetry
-poetry.lock
-
-# Logs
-logs/
-*.log
-
-# Runtime data
-pids/
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
-coverage/
-
-# nyc test coverage
-.nyc_output
-
-# Cache
-.cache/
-
-_cache_img
-customer_service-0.1.0-py3-none-any.whl
-google_adk-.*.whl
-_tmp*
-
-# 백업 폴더
-backups/
+# Backup files
 *.backup
 *.bak
+*~
 
-# Cursor 관련
-.cursor/
-.cursorignore
+# PID files
+*.pid
+.backend.pid
+.frontend.pid
+.user_chat.pid

@@ -15,6 +15,7 @@
 
 import os
 import logging
+from typing import Optional
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from pydantic import BaseModel, Field
 
@@ -46,7 +47,7 @@ class Config(BaseSettings):
     CLOUD_PROJECT: str = Field(default="my_project")
     CLOUD_LOCATION: str = Field(default="us-central1")
     GENAI_USE_VERTEXAI: str = Field(default="1")
-    API_KEY: str | None = Field(default="")
+    API_KEY: Optional[str] = Field(default="")
     agent_language: str = "ko-KR"
     
     def __post_init__(self):

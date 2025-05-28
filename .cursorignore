@@ -1,0 +1,26 @@
+# Cursor가 절대 건드리면 안 되는 파일들
+
+# 인증 관련
+service-account-key.json
+*.pem
+*.key
+.env
+.env.*
+
+# MCP 설정
+~/Library/Application Support/Claude/claude_desktop_config.json
+
+# 데이터베이스
+database/*.db
+*.sqlite
+*.sqlite3
+
+# 백업
+*.bak
+*.backup
+backups/
+
+# 민감한 설정
+secrets/
+credentials/
+config/production.json
