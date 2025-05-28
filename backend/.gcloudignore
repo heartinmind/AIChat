@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+*.db
+*.sqlite
+*.sqlite3
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.*
+
+# Logs
+*.log
+
+# Test
+tests/
+test_*.py
+
+# Documentation
+docs/
+*.md
+!README.md
