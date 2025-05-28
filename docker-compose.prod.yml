@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - CLAUDE_API_KEY=${CLAUDE_API_KEY}
+    volumes:
+      - ./backend/elite_beauty.db:/app/elite_beauty.db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3002:3002"
+    environment:
+      - NEXT_PUBLIC_API_URL=https://api.YOUR_DOMAIN.com
+    depends_on:
+      - backend
+
+  admin:
+    build: ./admin
+    ports:
+      - "3001:3001"
+    environment:
+      - REACT_APP_API_URL=https://api.YOUR_DOMAIN.com
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+      - frontend
+      - admin

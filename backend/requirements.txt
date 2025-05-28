@@ -20,8 +20,9 @@ passlib[bcrypt]==1.7.4
 python-dotenv==1.0.0
 
 # 유틸리티
-pydantic==2.5.0
-pydantic-settings==2.1.0
+pydantic==2.7.4
+pydantic-core==2.18.8
+pydantic-settings==2.3.4
 python-dateutil==2.8.2
 
 # 웹소켓 (실시간 채팅용) - 선택사항

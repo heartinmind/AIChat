@@ -24,6 +24,7 @@
     "react-hook-form": "7.48.2",
     "react-hot-toast": "2.4.1",
     "react-query": "3.39.3",
+    "react-router-dom": "^7.6.1",
     "socket.io-client": "4.5.4",
     "uuid": "^11.1.0",
     "zustand": "4.4.7"
