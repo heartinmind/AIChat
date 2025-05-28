@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import {
   Box,
   Container,
@@ -28,7 +28,7 @@ import { ko } from 'date-fns/locale';
 import { useChat } from '../contexts/ChatContext';
 
 const ChatPage: React.FC = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const {
     user,
     session,
@@ -47,14 +47,14 @@ const ChatPage: React.FC = () => {
   // 세션 생성
   useEffect(() => {
     if (!user) {
-      navigate('/');
+      router.push('/');
       return;
     }
 
     if (!session) {
       createSession();
     }
-  }, [user, session, navigate, createSession]);
+  }, [user, session, router, createSession]);
 
   // 자동 스크롤
   const scrollToBottom = () => {
@@ -68,7 +68,7 @@ const ChatPage: React.FC = () => {
   // 메시지 전송 처리
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!inputMessage.trim() || isLoading) return;
 
     const message = inputMessage;
@@ -89,7 +89,7 @@ const ChatPage: React.FC = () => {
   const handleEndSession = async () => {
     if (window.confirm('상담을 종료하시겠습니까?')) {
       await endSession();
-      navigate('/');
+      router.push('/');
     }
   };
 
@@ -123,7 +123,7 @@ const ChatPage: React.FC = () => {
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
             엘리트 뷰티 클리닉
           </Typography>
-          
+
           <Chip
             icon={session.route_target === 'ai' ? <SmartToy /> : <SupportAgent />}
             label={session.route_target === 'ai' ? 'AI 상담사 지수' : '전문 상담사'}
@@ -133,7 +133,7 @@ const ChatPage: React.FC = () => {
               color: 'white',
             }}
           />
-          
+
           <IconButton color="inherit" onClick={handleEndSession}>
             <ExitToApp />
           </IconButton>
@@ -188,7 +188,7 @@ const ChatPage: React.FC = () => {
                       {message.sender === 'ai' ? <SmartToy /> : <SupportAgent />}
                     </Avatar>
                   )}
-                  
+
                   <Paper
                     elevation={0}
                     sx={{
@@ -215,7 +215,7 @@ const ChatPage: React.FC = () => {
                       {format(new Date(message.timestamp), 'a h:mm', { locale: ko })}
                     </Typography>
                   </Paper>
-                  
+
                   {message.sender === 'user' && (
                     <Avatar sx={{ ml: 1, bgcolor: 'grey.400' }}>
                       {user.name[0]}

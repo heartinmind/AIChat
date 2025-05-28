@@ -1,0 +1,16 @@
+runtime: nodejs18
+
+handlers:
+  - url: /static
+    static_dir: build/static
+    
+  - url: /(.*\.(json|ico|js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot))$
+    static_files: build/\1
+    upload: build/.*\.(json|ico|js|css|png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$
+    
+  - url: /.*
+    static_files: build/index.html
+    upload: build/index.html
+
+env_variables:
+  REACT_APP_API_URL: "https://elite-beauty-api-asia-northeast3-lm.a.run.app"

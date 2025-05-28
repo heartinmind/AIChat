@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/router';
 import {
   Box,
   Container,
@@ -17,9 +17,9 @@ import { motion } from 'framer-motion';
 import { useChat } from '../contexts/ChatContext';
 
 const LandingPage: React.FC = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { createUser, isLoading, error } = useChat();
-  
+
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [localError, setLocalError] = useState('');
@@ -41,7 +41,7 @@ const LandingPage: React.FC = () => {
 
     try {
       await createUser(name, phone);
-      navigate('/chat');
+      router.push('/ChatPage');
     } catch (err) {
       // 에러는 context에서 처리됨
     }

@@ -1,0 +1,36 @@
+# Git
+.git
+.gitignore
+
+# Dependencies
+node_modules/
+.next/cache/
+
+# Test files
+*.test.js
+*.spec.js
+coverage/
+.nyc_output/
+
+# Development files
+.env.local
+.env.development
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Misc
+.vercel
+*.md
+!README.md
