@@ -1,39 +1,11 @@
-# Elite Beauty Clinic AI Consultation System - Backend Requirements
-
-# FastAPI 관련
-fastapi==0.115.9  # chromadb와 호환되는 버전
+fastapi==0.104.1
 uvicorn[standard]==0.24.0
-python-multipart==0.0.6
-
-# 데이터베이스
-sqlalchemy==2.0.35  # Python 3.13과 호환되는 최신 버전
-# psycopg2-binary==2.9.9  # PostgreSQL을 사용할 경우 주석 해제
-alembic==1.12.1
-
-# AI
-anthropic==0.39.0  # 최신 안정 버전으로 업데이트
-httpx==0.25.2  # anthropic과 호환되는 버전으로 고정
-
-# 보안
-python-jose[cryptography]==3.3.0
+sqlalchemy==2.0.23
 passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+anthropic==0.18.1
+httpx==0.24.1
 python-dotenv==1.0.0
-
-# 유틸리티
-pydantic==2.7.4
-pydantic-settings==2.3.4
-python-dateutil==2.8.2
-
-# 웹소켓 (실시간 채팅용) - 선택사항
-# websockets==12.0
-
-# Redis (세션 관리용) - 선택사항
-# redis==5.0.1
-
-# 로깅
-loguru==0.7.2
-
-# 테스팅 - 선택사항
-# pytest==7.4.3
-# pytest-asyncio==0.21.1
-# httpx==0.25.2
+pydantic==2.8.2
+pydantic-core==2.20.1
+psutil==5.9.6

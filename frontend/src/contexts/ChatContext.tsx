@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useCallback, useEffect } fr
 import axios from 'axios';
 import io, { Socket } from 'socket.io-client';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 interface User {
   user_id: string;
@@ -96,12 +96,20 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setError(null);
 
     try {
+      // 먼저 라우팅 확인 (AI or 상담원)
+      const routeResponse = await api.post('/api/session/route');
+      const routeTarget = routeResponse.data.target;
+      
+      // 세션 생성
       const response = await api.post('/api/sessions', {
         user_id: user.user_id,
-        source: 'web',
+        route_target: routeTarget,
       });
       
-      setSession(response.data);
+      setSession({
+        ...response.data,
+        route_target: routeTarget
+      });
       
       // WebSocket 연결 (실시간 채팅용)
       if (response.data.route_target === 'agent') {
@@ -156,14 +164,16 @@ export const ChatProvider: React.FC<{ children: React.ReactNode }> = ({ children
         content,
       });
 
-      // AI/상담원 응답 추가
-      const responseMessage: Message = {
-        message_id: response.data.message_id,
-        sender: response.data.sender,
-        content: response.data.content,
-        timestamp: response.data.timestamp,
-      };
-      setMessages(prev => [...prev, responseMessage]);
+      // AI/상담원 응답 처리
+      if (response.data.response) {
+        const responseMessage: Message = {
+          message_id: `resp-${Date.now()}`,
+          sender: response.data.sender as 'ai' | 'agent',
+          content: response.data.response,
+          timestamp: new Date().toISOString(),
+        };
+        setMessages(prev => [...prev, responseMessage]);
+      }
 
     } catch (err: any) {
       setError(err.response?.data?.detail || '메시지 전송 중 오류가 발생했습니다.');

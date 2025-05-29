@@ -1,19 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
-import ChatInterface from '@/components/ChatInterface';
-import { Toaster } from 'react-hot-toast';
+import LandingPage from '@/components/LandingPage';
 
 export default function Home() {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null;
-  }
-
   return (
     <>
       <Head>
@@ -23,9 +12,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <main className="min-h-screen bg-gradient-to-br from-pink-50 to-purple-50">
-        <Toaster position="top-right" />
-        <ChatInterface />
+      <main>
+        <LandingPage />
       </main>
     </>
   );

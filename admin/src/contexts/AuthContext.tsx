@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useCallback, useEffect } fr
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://elite-beauty-api-asia-northeast3-lm.a.run.app';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'https://elite-beauty-api-225954711662.asia-northeast3.run.app';
 
 interface Agent {
   agent_id: string;

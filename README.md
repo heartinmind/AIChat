@@ -12,7 +12,7 @@ AI 기반 뷰티 클리닉 상담 시스템
 ## 🛠️ 기술 스택
 
 ### Backend
-- FastAPI (Python 3.13)
+- FastAPI (Python 3.9-3.12 권장, 3.13은 호환성 이슈 있음)
 - SQLAlchemy + SQLite
 - Claude AI API
 - JWT Authentication
@@ -23,6 +23,21 @@ AI 기반 뷰티 클리닉 상담 시스템
 - **스타일링**: Tailwind CSS, Emotion
 
 ## 📦 설치 방법
+
+### 사전 요구사항
+- Python 3.9-3.12 (현재 Python 3.13은 일부 패키지와 호환성 문제가 있습니다)
+- Node.js 18.x 이상
+- Git
+
+### Python 3.12 설치 (권장)
+```bash
+# macOS (Homebrew)
+brew install python@3.12
+
+# 또는 pyenv 사용
+pyenv install 3.12.1
+pyenv local 3.12.1
+```
 
 ### 1. 저장소 클론
 ```bash
@@ -89,10 +104,33 @@ CLAUDE_API_KEY=your-actual-api-key-here
 # 전체 시스템 종료
 ./stop_all.sh
 
+# 개별 테스트
+bash test_backend_local.sh   # Backend 로컬 테스트
+
 # 로그 확인
 tail -f backend.log    # Backend 로그
 tail -f admin.log      # Admin 로그
 tail -f frontend.log   # Frontend 로그
+```
+
+### 트러블슈팅
+
+#### Python 3.13 호환성 문제
+```bash
+# Python 버전 확인
+python3 --version
+
+# Python 3.12 설치 가이드 실행
+bash install_python312.sh
+```
+
+#### 포트 충돌
+```bash
+# 8000번 포트 사용 프로세스 확인
+lsof -i :8000
+
+# 프로세스 종료
+kill -9 $(lsof -ti :8000)
 ```
 
 ## 📋 개발 로드맵

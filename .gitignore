@@ -59,3 +59,12 @@ Thumbs.db
 .backend.pid
 .frontend.pid
 .user_chat.pid
+ven/
+*.pyc
+__pycache__/
+*.log
+.DS_Store
+backend/elite_beauty.db
+admin/.firebase/
+backend/main_fixed.py
+backend/requirements.tx

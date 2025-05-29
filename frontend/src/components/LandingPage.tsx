@@ -41,7 +41,7 @@ const LandingPage: React.FC = () => {
 
     try {
       await createUser(name, phone);
-      router.push('/ChatPage');
+      router.push('/chat');
     } catch (err) {
       // 에러는 context에서 처리됨
     }
