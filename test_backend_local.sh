@@ -46,7 +46,6 @@ else
 fi
 
 # 환경 변수 설정
-# export CLAUDE_API_KEY="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"
 export SECRET_KEY="elite-beauty-secret-key-2024"
 export DATABASE_URL="sqlite:///./elite_beauty.db"
 
